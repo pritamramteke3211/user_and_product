@@ -1,0 +1,52 @@
+
+/* Container */
+.container-fluid{
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+/* Body Column */
+
+.col-sm-10{
+     padding-right: 0px;
+     padding-left: 0px;
+}
+
+
+/* Navigation */
+
+.sidenavbar{
+     background-color:royalblue;
+     opacity: 1;
+     
+ }
+
+a.nav-link{
+     color: whitesmoke;
+}
+
+a.nav-link:hover{
+     color: black;
+     background-color: #e9cd79 ;
+}
+
+a.nav-link.active{
+     color: black;
+     background-color: #ffc107 ;
+     font-weight: bold;
+}
+
+.col-sm-2{
+     padding-left:0px;
+     padding-right:0px;
+     min-height:100%;
+ }
+
+.row{
+     --bs-gutter-x: 0rem;
+}
+
+.navbar-brand{
+     padding-left:100px;
+}
+

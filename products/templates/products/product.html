@@ -1,0 +1,24 @@
+{% extends 'user/base.html' %}
+{% block title %}Product{% endblock title %}
+{% load humanize %}
+{% block body %}
+ <div class="container mx-5 mt-5 mb-5">
+    <div class="row">
+        <div class="col-xs-6 col-sm-6 col-md-6 px-2 text-center align-self-center">
+            <img src="{{product.product_image.url}}" alt=""  class="img-fluid img-thumbnail" id='product_view_img'>
+        </div>
+       
+        <div class="col-xs-5 col-sm-5 col-md-5 offset-1 px-2">
+            <h1>{{product.name}}</h1>
+            <hr>
+            <p>{{product.description}}</p>
+            <h4><span> Price: </span> <i>₹ {{product.price}}</i></h4>
+            <h5><span> Weight: </span>{{product.weight}} grams</h5>
+            <p><span> Upload_On: </span>{{product.created_at|naturaltime}}</p>
+            <button type='button' class='btn btn-danger cart me-2' id="pr{{product.product_id}}" href="#" disabled>Add to Cart</button>
+
+            <button type="button" class='btn btn-success cart' id="pr{{product.product_id}}" href="#" disabled>Buy Now</button>
+        </div>
+    </div>
+</div>
+{% endblock body %}

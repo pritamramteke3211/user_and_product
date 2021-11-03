@@ -1,0 +1,32 @@
+{% extends 'user/base.html' %}
+{% block title %}Add_Post{% endblock title %}
+
+{% block body %}
+
+<div class="container my-5">
+    <br>
+    <div class="row mx-0 my-2">
+        <h2 class="text-center">New Blog</h2>
+        <div class="col">
+            <form action="" method='post'>
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" class="form-control" id="title" name="title">
+                </div>
+                <div class="mb-3">
+                    <label for="category" class="form-label">Category</label>
+                    <input type="text" class="form-control" id="category" name="category">
+                </div>
+                <div class="mb-3">
+                    <label for="text" class="form-label">Text</label>
+                    <textarea class="form-control" id="text" name='text' rows="3"></textarea>
+                </div>
+                <input type="submit" value="Add_Post" class="btn btn-success">
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}
+

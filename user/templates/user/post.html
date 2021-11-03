@@ -1,0 +1,127 @@
+{% extends 'user/base.html' %}
+{% block title %} {{post.title}}{% endblock title %}
+{% load humanize %}
+{% block body %}
+
+    <div class="container my-5">
+    <div class="row g-5">
+        <div class="col-md-8 ">
+            <h3 class="fst-italic">
+                {{post.title}}
+            </h3>
+
+
+            <article >
+                <p class="blog-post-meta">
+                {{post.updated_at|naturaltime}} by <a href="#"> {{post.user|capfirst}}</a>
+                </p>
+                <div class='text-center'>
+                <div  style='text-align: justify'>
+                <p >{{post.text|safe}}</p>
+                </div>
+                </div>
+            </article>  
+
+            <hr>
+          
+            <div class="my-4">
+
+                <h4 class='mb-3'>Comments ({{comments|length}})</h4>
+
+          
+                    
+                    <form action="{% url 'postComment' post.id %}" method="post">
+                    {% comment %} <form action="" method="post"> {% endcomment %}
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <textarea class="form-control" id="comment" name='comment' rows="3" placeholder='Comment Here...'></textarea>
+                         
+                        </div>
+                        
+                        <input type="submit" class='btn btn-success' value='comment'>
+                        
+                    </form>
+                    <hr>
+
+                    {% for comment in  comments %}
+                        {% if comment.reply %}
+                        {% else %}
+                        <div class="alert alert-info my-2">
+                            <b>{{comment.user}}</b><br>
+                            <span>{{comment.timestamp|naturaltime}}</span>
+                            <p>{{comment.comment}}</p>
+                            
+                            
+                            <a data-bs-toggle="collapse" href="#reply{{comment.sno}}" aria-expanded="false" aria-controls="reply{{comment.sno}}">Reply({{comment.reply_count}})</a>
+                          
+                            
+                            
+                         
+
+                            <div class="collapse" id="reply{{comment.sno}}">
+                            <div class="card card-body">
+                                <form action="{% url 'postComment' post.id %}" method="post">
+                                {% comment %} <form action="#" method="post"> {% endcomment %}
+                                    {% csrf_token %}
+                                    <div class="mb-3">
+                                        <input type="text" class='form-control' id="comment" name='comment' placeholder='Reply Here...' >
+                                        <input type="hidden" name="reply" value='{{comment.sno}}'>
+                                    </div>
+                                    
+                                    <input type="submit" class='btn btn-success' value='reply'>
+                                    
+                                </form>
+                                <hr>
+                                {% for reply in  comments %}
+                                    {% comment %} {% if reply.reply and reply.parent == comment.sno  %} {% endcomment %}
+                                    {% if reply.reply  and reply.parent == comment.sno %}
+                                     
+                                    <div class="alert alert-info my-2">
+                                        <b>{{reply.user}}</b><br>
+                                        <span>{{reply.timestamp|naturaltime}}</span>
+                                        <p>{{reply.comment}}</p>
+                                        
+                           
+                                        
+                                    </div>
+                                    {% endif %}
+                                {% endfor %}
+                                    
+                                
+                            </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+
+
+                </div>
+            </div>
+
+        <div class="col-md-4">
+            <div class="position-sticky" style="top: 2rem;">
+                <div class="p-4 mb-3 bg-light rounded">
+                <h4 class="fst-italic">About</h4>
+                <p class="mb-0">
+                    My ShoppinglyAZ is an <em>e commerce website</em>. You can use it to buy and search for items online.
+                </p>
+                
+                </div>
+
+
+                <div class="p-4">
+                <h4 class="fst-italic">Contact Us On</h4>
+                <ol class="list-unstyled">
+                    <li><i class="fab fa-github"></i><a href="https://github.com/pritamramteke3211" target='_blank'> GitHub</a></li>
+                    <li><i class="fab fa-linkedin"></i><a href="https://www.linkedin.com/in/pritam-ramteke-371ab714a/" target='_blank'> LinkedIn</a></li>
+                    <li><i class="fab fa-twitter"></i><a href="https://twitter.com/PritamRamteke13" target='_blank'> Twitter</a></li>
+                    <li><i class="fab fa-facebook"></i><a href="https://www.facebook.com/pritam.ramteke.5473/" target='_blank'> Facebook</a></li>
+                </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}
+

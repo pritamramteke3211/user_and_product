@@ -1,0 +1,42 @@
+{% extends 'user/base.html' %}
+{% block title %}Bloghome{% endblock title %}
+{% load humanize %}
+{% block body %}
+<br>
+
+
+
+<div class="container my-4">
+    {% if posts %}
+        <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-1" >
+        {% for post in posts %}
+      <div class="col">
+        <div class="card mb-3" >
+            <div class="row g-0">
+
+                <div class="card-body">
+                  <strong class="d-inline-block mb-2 text-primary">{{post.category}}</strong><br>
+                  <h5 class="card-title">{{post.title}}</h5>
+                  <p class="card-text">{{post.text|truncatechars:150}}</p>
+                  <p class="card-text"><small class="text-muted">{{post.updated_at|naturaltime}}</small></p>
+                  <p class="card-text"><a href="{% url 'postpage' post.id %}">Continue Reading...</a></p>
+                </div>
+              
+            </div>
+          </div>
+      </div> 
+      {% endfor %}
+        
+    </div>
+    {% else %}
+    <div class="alert alert-info">
+        posts not available
+    </div>
+    {% endif %}
+   
+
+    
+
+</div>
+
+{% endblock body %}

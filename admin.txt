@@ -1,0 +1,2 @@
+admin: apollo
+pass: lunarx@123
