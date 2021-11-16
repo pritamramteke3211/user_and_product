@@ -1,2 +1,2 @@
-admin: apollo
+admin: admin
 pass: lunarx@123

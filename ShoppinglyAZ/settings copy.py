@@ -79,18 +79,10 @@ WSGI_APPLICATION = 'ShoppinglyAZ.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'default' : {},
-    'user_db': {
+    
+    'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-    },
-    'product_db':{
-        'NAME':'product',
-        'ENGINE': 'django.db.backends.mysql',
-        'USER': 'root',
-        'PASSWORD': 'root',
-        'PORT': 3306,
-        'HOST':'127.0.0.1',
     }
 }
 
@@ -151,5 +143,3 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 MESSAGE_TAGS = {
             message_s.ERROR: 'danger',
         }
-
-DATABASE_ROUTERS = ['routers.db_routers.UserRouter','routers.db_routers.ProductRouter']
